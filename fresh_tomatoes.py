@@ -4,6 +4,8 @@ import re
 
 # Styles and scripting for the page
 main_page_head = '''
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Fresh Tomatoes!</title>
@@ -40,10 +42,10 @@ main_page_head = '''
           
             padding-top: 20px;
         }
-    /*   .movie-tile:hover {
+      .movie-tile:hover {
             background-color: #EEE;
             cursor: pointer;
-        } */
+        }
         .scale-media {
             padding-bottom: 56.25%;
             position: relative;
@@ -88,8 +90,7 @@ main_page_head = '''
 
 # The main page layout and title bar
 main_page_content = '''
-<!DOCTYPE html>
-<html lang="en">
+
   <body>
     <!-- Trailer Video Modal -->
     <div class="modal" id="trailer">
@@ -128,7 +129,7 @@ movie_tile_content = '''
   <div class="row">    
      <div class="col-sm-5">
       <div>
-      <img src="{poster_image_url}" width="220" height="342">  
+      <img alt="{movie_title} Poster Image" src="{poster_image_url}" width="220" height="342">  
       </div>   
       <div class="btn btn-default trailer-btn"  data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">Watch Trailer</div>
      </div>

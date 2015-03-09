@@ -5,7 +5,7 @@ Created on Mar 4, 2015
 '''
 class Movie:
     
-    #init the Movie obj using a 
+    #init the Movie object
     def __init__(self, movie_details=None):
         self.title=movie_details['title']
         self.year=movie_details['year']
