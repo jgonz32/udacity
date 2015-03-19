@@ -32,7 +32,7 @@ def testRegister():
     deletePlayers()
     registerPlayer("Chandra Nalaar")
     c = countPlayers()
-    print c
+
     if c != 1:
         raise ValueError(
             "After one player registers, countPlayers() should be 1.")

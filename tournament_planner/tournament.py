@@ -21,13 +21,13 @@ def delete_from(table_name):
         cursor.execute(DELETE)
         database_connection.commit()
     except:
-        print("Error.")
+        print "Error." 
     finally:
         database_connection.close()
 
 def deleteMatches():
     '''Remove all the match records from the database.'''
-    delete_from("matchups")
+    delete_from("standing")
     
 
 def deletePlayers():
@@ -48,7 +48,7 @@ def countPlayers():
         result = cursor.fetchone()[0]
        
     except:
-        print("Error.")
+        print "Error."
     finally:
         database_connection.close()
     
@@ -73,19 +73,18 @@ def registerPlayer(name):
         cursor = database_connection.cursor()
         cursor.execute(INSERT_PLAYER_QUERY, (name,))
           
-        '''get player id  of inserted player '''
+        #get player id  of inserted player '''
         player_id= cursor.fetchone()[0]
         
-        '''add player to standing table'''    
+        #add player to standing table'''    
         cursor.execute(ADD_PLAYER_TO_STANDING, (player_id,0,0,))
       
         database_connection.commit()
     except:
-        print("Error.")
+        print "Error."
     finally:
         database_connection.close()
     
-    #return result
 
 
 def playerStandings():
@@ -108,11 +107,11 @@ def playerStandings():
         database_connection = connect()
         cursor = database_connection.cursor()
         
-        '''query standing table using latest_standing view. The view return the standung in descending order of wins '''
+        #query standing table using latest_standing view. The view return the standung in descending order of wins 
         cursor.execute(QUERY_STANDING)
         results = cursor.fetchall()        
     except:
-        print("Error")
+        print "Error" 
     finally:
         database_connection.close()
     
@@ -126,23 +125,20 @@ def reportMatch(winner, loser):
       winner:  the id number of the player who won
       loser:  the id number of the player who lost
     """
-    INSERT_MATCH_RESULT = 'INSERT INTO matchups (winner, loser) values(%s,%s)'
     UPDATE_WINNER_STANDING = 'UPDATE standing set totalwins = totalwins + 1, totalmatchups= totalmatchups + 1 where player_id=%s'
     UPDATE_LOSER_STANDING = 'UPDATE standing set totalmatchups = totalmatchups + 1 where player_id=%s'
     
     try:
         database_connection = connect()
         cursor = database_connection.cursor()
-        INSERT_RESULT=cursor.mogrify(INSERT_MATCH_RESULT,(winner, loser))
-        cursor.execute(INSERT_RESULT)
         
-        #after reporting the result update the standing for each player
+        # updates the standing with the results
         cursor.execute(UPDATE_WINNER_STANDING, (winner,))
         cursor.execute(UPDATE_LOSER_STANDING, (loser,))
         database_connection.commit()
 
     except:
-        print("Error.")
+        print "Error." 
     finally:
         database_connection.close()
  
@@ -162,7 +158,7 @@ def swissPairings():
         name2: the second player's name
     """
     
-    '''query standing table using latest_standing view. The view return the standung in descending order of wins '''
+    #query standing table using latest_standing view. The view return the standung in descending order of wins '''
     QUERY_STANDING = 'SELECT * FROM latest_standing'
     
     pairings=[]
@@ -172,11 +168,10 @@ def swissPairings():
         cursor.execute(QUERY_STANDING)
         results = cursor.fetchall()
 
-        pairings = [ (results[i][0],results[i][1],results[i+1][0],results[i+1][1]) for i in range(0,len(results),2) ]
+        pairings = [ (results[i][0], results[i][1], results[i+1][0] ,results[i+1][1]) for i in range(0,len(results),2) ]
 
-        print pairings
     except:
-        print("Error.")
+        print "Error." 
     finally:
         database_connection.close()
     
