@@ -1,0 +1,58 @@
+{
+    "movies": [
+        {
+            "title": "Home",
+            "year": 2015,
+            "poster_image_url": "http://ia.media-imdb.com/images/M/MV5BMTg1NTk3MDQ4Ml5BMl5BanBnXkFtZTgwMDMyMzE1MzE@._V1_SX214_AL_.jpg",
+            "trailer_youtube_url": "www.youtube.com/watch?v=MyqZf8LiWvM",
+			"summary": "When Oh lands on Earth and finds himself on the run from his own people, he forms an unlikely friendship with an adventurous girl named Tip who is on a quest of her own. Through a series of comic adventures with Tip, Oh comes to understand that being different and making mistakes is all part of being human. And while he changes her planet and she changes his world, they discover the true meaning of the word HOME.",
+			"stars": "Jim Parsons, Rihanna, Steve Martin",
+			"rating":"G"
+        },
+        {
+            "title": "Chappie",
+            "year": 2015,
+            "poster_image_url": "http://ia.media-imdb.com/images/M/MV5BMTUyNTI4NTIwNl5BMl5BanBnXkFtZTgwMjQ4MTI0NDE@._V1_SX214_AL_.jpg",
+            "trailer_youtube_url": "www.youtube.com/watch?v=l6bmTNadhJE",
+			"summary": "In the near future, crime is patrolled by an oppressive mechanized police force. When one police droid, Chappie, is stolen and given new programming, he becomes the first robot with the ability to think and feel for himself.",
+			"stars": "Sharlto Copley, Dev Patel, Hugh Jackman",
+			"rating":"R"
+        },
+        {
+            "title": "The Theory of Everything",
+            "year": 2014,
+            "poster_image_url": "http://ia.media-imdb.com/images/M/MV5BMTAwMTU4MDA3NDNeQTJeQWpwZ15BbWU4MDk4NTMxNTIx._V1_SX214_AL_.jpg",
+            "trailer_youtube_url": "www.youtube.com/watch?v=x8QYUgO-tZo",
+			"summary": "In the 1960s, Cambridge University student and future physicist Stephen Hawking (Eddie Redmayne) falls in love with fellow collegian Jane Wilde (Felicity Jones). At 21, Hawking learns that he has motor neuron disease. He and Jane defy terrible odds and break new ground in the fields of medicine and science, achieving more than either could hope to imagine",
+			"stars": " Eddie Redmayne, Felicity Jones, Tom Prior",
+			"rating":"PG-13"
+        },
+        {
+            "title": "Hot Tub Time Machine 2",
+            "year": 2015,
+            "poster_image_url": "http://ia.media-imdb.com/images/M/MV5BMTU3NzQzMzE0NV5BMl5BanBnXkFtZTgwMDM4MTI0NDE@._V1_SX214_AL_.jpg",
+            "trailer_youtube_url": "www.youtube.com/watch?v=nWa4INxk4y4",
+			"summary": "When Lou finds himself in trouble, Nick and Jacob fire up the hot tub time machine in an attempt to get back to the past. But they inadvertently land in the future with Adam Jr. Now they have to alter the future in order to save the past - which is really the present",
+			"stars": " Rob Corddry, Craig Robinson, Clark Duke",
+			"rating":"R"
+        },
+        {
+            "title": "Get Hard",
+            "year": 2015,
+            "poster_image_url": "http://ia.media-imdb.com/images/M/MV5BMTc3OTc1NjM0M15BMl5BanBnXkFtZTgwNjAyMzE1MzE@._V1_SX214_AL_.jpg",
+            "trailer_youtube_url": "www.youtube.com/watch?v=lEqrpuU9fYI",
+			"summary": "When millionaire James King is nailed for fraud and bound for San Quentin, he turns to Darnell Lewis to prep him to go behind bars.",
+			"stars": "Will Ferrell, Kevin Hart, Alison Brie",
+			"rating":"R"
+        },
+        {
+            "title": "Big Hero 6",
+            "year": 2014,
+            "poster_image_url": "http://ia.media-imdb.com/images/M/MV5BMjI4MTIzODU2NV5BMl5BanBnXkFtZTgwMjE0NDAwMjE@._V1_SY317_CR0,0,214,317_AL_.jpg",
+            "trailer_youtube_url": "www.youtube.com/watch?v=rD5OA6sQ97M",
+			"summary": "The special bond that develops between plus-sized inflatable robot Baymax, and prodigy Hiro Hamada, who team up with a group of friends to form a band of high-tech heroes",
+			"stars": "Ryan Potter, Scott Adsit, Jamie Chung",
+			"rating":"PG"
+        }
+    ]
+}
