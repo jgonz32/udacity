@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+  </script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+
+
+<script src="//apis.google.com/js/platform.js?onload=start"> </script>
+
+<!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+
+<script>
+
+$( document ).ready(function() {
+    $('[data-toggle="popover"]').popover({'html':true})
+});
+
+</script>
+
+<script>
+function render_gplusbutton() {
+    gapi.signin.render('customBtn', {
+      //'callback': 'signinCallback',
+      'clientid': '251203697602-5fgrsnrfdrarv2sftttln0ukcmpbsjbo.apps.googleusercontent.com',
+      'cookiepolicy': 'single_host_origin',
+      'requestvisibleactions': 'http://schema.org/AddAction',
+      'scope': 'https://www.googleapis.com/auth/plus.login'
+    });
+  }
+function signInCallback(authResult) {
+  if (authResult['code']) {
+
+    // Hide the sign-in button now that the user is authorized
+    $('#signinButton').attr('style', 'display: none');
+
+    // Send the one-time-use code to the server, if the server responds, write a 'login successful' message to the web page and then redirect back to the main restaurants page
+    $.ajax({
+      type: 'POST',
+      url: '/gconnect?state={{STATE}}',
+      processData: false,
+      data: authResult['code'],
+      contentType: 'application/octet-stream; charset=utf-8',
+      success: function(result) {
+        // Handle or verify the server response if necessary.
+        if (result) {
+          $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
+         setTimeout(function() {
+          window.location.href = "/catalog";
+         }, 4000);
+          
+
+      } else if (authResult['error']) {
+
+    console.log('There was an error: ' + authResult['error']);
+  } else {
+        $('#result').html('Failed to make a server-side call. Check your configuration and console.');
+         }
+
+      }
+      
+  }); } }
+</script>
+
+<!--END GOOGLE PLUS SIGN IN -->
+
+</head>
+
+<body>
+{% include "header.html" %}
+<div class="container">
+<div class="row">
+{% include "sidemenu.html" %}
+
+  {% block content %}
+  {% endblock %}
+</div>
+</div>
+
+</body>
+
+</html>

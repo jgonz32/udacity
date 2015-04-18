@@ -1,0 +1,112 @@
+{% extends "main-signedin.html" %}
+{% block content %}
+<div class="col-sm-2">
+<div class="container">
+	<h4>Add a SmartPhone Model</h4>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<ul>
+					{% for message in messages %}
+						<li> <strong> {{ message }} </strong> </li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		{% endwith %}
+
+<form action="#" method = "post"  class="form-horizontal">
+  <div class="form-group">
+   <div class="col-sm-3">
+	<label>Select Manufacturer:</label>
+	</div>
+	<div class="col-sm-3">
+	<select name="manufacturer_list" class="form-control">
+	   <option value="">Select Manufacturer</option>
+	  {% for m,c,md in manufacturers %}
+	    
+		<option value={{m}}>{{m}}</option>
+	
+	{% endfor %}
+	</select>
+	
+	</div>
+   </div>
+   <div class="form-group">
+    <div class="col-sm-3">
+    <label for="phone_name" >Enter phone models name:</label>
+	</div>
+	<div class="col-sm-2">
+    <input type="text" class="form-control" placeholder="Enter model name" name="name" id="phone_name">
+	</div>
+	
+	</div>
+	
+	<h4>Specifications:</h4>
+	 <div class="form-group">
+		<div class="col-sm-3">
+			<label>Size:</label>
+		</div>
+		<div class="col-sm-2">
+			<input type="text" class="form-control" placeholder="size" name="size">
+		</div>
+	 </div>
+	
+	 <div class="form-group">
+	   <div class="col-sm-3">
+			<label>Weight:</label>
+		</div>
+		<div  class="col-sm-2">
+			<input type="text" class="form-control" placeholder="weight" name="weight">
+		</div>
+	 </div>
+	
+	
+	<div class="form-group">
+	  <div class="col-sm-3">
+		<label>Camera: </label>
+		</div>
+		<div class="col-sm-2">
+			<input type="text" class="form-control" placeholder="camera" name="camera">
+		</div>
+	</div>
+	
+	 <div class="form-group">
+	  <div class="col-sm-3">
+		<label>Memory:</label>
+	  </div>
+	  <div class="col-sm-2">
+		<input type="text" class="form-control"" placeholder="memory" name="memory">
+	  </div>
+	 </div>
+	 
+	 <div class="form-group">
+		<div class="col-sm-3">
+			<label>Operating System: </label>
+		</div>
+		<div class="col-sm-2">
+			<input type="text" class="form-control" placeholder="operating system" name="os">
+		</div>
+	</div>
+	
+	 <div class="form-group">
+		<div class="col-sm-3">
+		<label>Display: </label>
+		</div>
+	<div class="col-sm-2">
+	<input type="text" class="form-control" placeholder="display" name="display">
+	</div>
+	</div>
+	
+     <div class="form-group">
+	 <div class="col-sm-3">
+     <button type="submit"class="btn btn-primary btn-xs">Add Phone</button>
+     <a href ={{url_for('showCatalog')}} class="btn btn-primary btn-xs" role="button">
+					Cancel
+					</a>
+	</div>
+	</div>
+
+</form>
+
+</div>
+</div>
+{% endblock %}

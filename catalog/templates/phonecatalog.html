@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+{% block content %}
+  <div class="col-sm-8">
+  
+  {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+
+        {% for message in messages %}
+		    <div class="alert alert-success" role="alert">{{ message }}</div>
+        
+        {% endfor %}
+       
+        {% endif %}
+    {% endwith %}
+    <div class="jumbotron">
+  <h2>SmartPhones Catalog</h2>
+  <p>Welcome to the Smart Phone catalog. The Smart Phone catalog is an online tool where you can get all details about current and new smart phones in the market. If you have a Google 
+  account you can add content to the catalog by adding phone models and ther specifications. So, go ahead and <a href={{url_for('showLogin')}} role="button"> sign in here</a>, and helps us create the go to online tool for smart phones enthusiasts like us.
+  </p>
+
+</div>
+  </div>
+{% endblock %}

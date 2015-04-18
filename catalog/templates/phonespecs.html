@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+{% block content %}
+   <div class="col-sm-6 well">
+    <h3><span>{{model}}</span></h3>
+    
+	<dl class="dl-horizontal">
+
+	<dt>Size: </dt> 
+	<dd> {{specs.size}}</dd>
+	<dt>Weight:</dt> 
+	<dd>{{specs.weight}}</dd>
+	<dt>Camera: </dt>
+	<dd>{{specs.camera}}</dd>
+	<dt>Memory:</dt>
+    <dd>{{specs.memory}}</dd>
+	<dt>OS:</dt>
+	<dd>{{specs.os}}</dd>
+	<dt>display:</dt> 
+	<dd>{{specs.display}}</dd>
+
+</dl>
+  </div>
+{% endblock %}
+

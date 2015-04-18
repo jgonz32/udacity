@@ -1,0 +1,116 @@
+{% extends "main-signedin.html" %}
+{% block content %}
+<div class="col-sm-2">
+<div class="container">
+	<h4>Edit {{model.name}} Specifications</h4>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<ul>
+					{% for message in messages %}
+						<li> <strong> {{ message }} </strong> </li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		{% endwith %}
+
+<form action="" method = "post"  class="form-horizontal">
+  <div class="form-group">
+   <div class="col-sm-3">
+	<label>Manufacturer:</label>
+	</div>
+	<div class="col-sm-3">
+	<select name="manufacturer_list" class="form-control" readonly>
+	   <option value="">Select </option>
+	  {% for m,c,md in manufacturers %}
+	    
+		{% if m==manufacturer %}
+		<option value="{{m}}" selected>{{m}}</option>
+		
+		{% endif%}
+		<option value="{{m}}">{{m}}</option>
+	
+	{% endfor %}
+	</select>
+	
+	</div>
+   </div>
+   <div class="form-group">
+    <div class="col-sm-3">
+    <label for="phone_name" >Phone model name:</label>
+	</div>
+	<div class="col-sm-3">
+    <input type="text" class="form-control" value="{{model}}" name="name" readonly>
+	</div>
+	
+	</div>
+	
+	<h4>Specifications:</h4>
+	 <div class="form-group">
+		<div class="col-sm-3">
+			<label>Size:</label>
+		</div>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" value="{{specs.size}}" name="size">
+		</div>
+	 </div>
+	
+	 <div class="form-group">
+	   <div class="col-sm-3">
+			<label>Weight:</label>
+		</div>
+		<div  class="col-sm-3">
+			<input type="text" class="form-control" value="{{specs.weight}}" name="weight">
+		</div>
+	 </div>
+	
+	
+	<div class="form-group">
+	  <div class="col-sm-3">
+		<label>Camera: </label>
+		</div>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" value="{{specs.camera}}" name="camera">
+		</div>
+	</div>
+	
+	 <div class="form-group">
+	  <div class="col-sm-3">
+		<label>Memory:</label>
+	  </div>
+	  <div class="col-sm-3">
+		<input type="text" class="form-control" value="{{specs.memory}}" name="memory">
+	  </div>
+	 </div>
+	 
+	 <div class="form-group">
+		<div class="col-sm-3">
+			<label>Operating System: </label>
+		</div>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" value="{{specs.os}}" name="os">
+		</div>
+	</div>
+	
+	 <div class="form-group">
+		<div class="col-sm-3">
+		<label>Display: </label>
+		</div>
+	<div class="col-sm-3">
+	<input type="text" class="form-control" value="{{specs.display}}" name="display">
+	</div>
+	</div>
+	
+     <div class="form-group">
+	 <div class="col-sm-3">
+     <button type="submit"class="btn btn-primary btn-xs">Save changes</button>
+     <a href ={{url_for('showPhoneSpecs',manufacturer=manufacturer,model=model)}} class="btn btn-primary btn-xs" role="button">
+					Cancel
+					</a>
+	</div>
+	</div>
+
+</form>
+
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+
+ul {
+list-style-type: none;
+margin-left: 20px;
+}
+li a { color: #FFFFFF}
+a:visited { color: #FFFFFF}
+a:hover { color: #666666}
+
+.phone_list {
+	list-style-type: none;
+	color: black;
+	margin-left: 20px;
+}
+
+li.phone_list a.phone_list { color: #000000}
+a.phone_list:visited { color: #000000}

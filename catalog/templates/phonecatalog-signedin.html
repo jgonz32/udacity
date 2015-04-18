@@ -1,0 +1,23 @@
+{% extends "main-signedin.html" %}
+{% block content %}
+  <div class="col-sm-8">
+  
+  {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+
+        {% for message in messages %}
+		    <div class="alert alert-success" role="alert">{{ message }}</div>
+        
+        {% endfor %}
+       
+        {% endif %}
+    {% endwith %}
+        <div class="jumbotron">
+  <h2>Welcome, {{ username }}</h2>
+  <p>To add a new phone click the plus (+) sign next to "Manufacturers" on the left side menu . You can add, edit, and delete your content. Other users are able to see your content, but only you can make changes. 
+     
+  </p>
+</div>
+  </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+{% block content %}
+  <div class="col-sm-6 well">
+    <h3>Sign In with Google</h3>
+	<p  style="color:black">Signing in with your Google account gives you access to add content to the catalog, as well as modify and delete the content you create. Your Google account information 
+	will not be shared with any third-party applications.</p>
+	<div id="signInButton">
+						  <span class="g-signin"
+							data-scope="openid email"
+							data-clientid="251203697602-5fgrsnrfdrarv2sftttln0ukcmpbsjbo.apps.googleusercontent.com"
+							data-redirecturi="postmessage"
+							data-accesstype="offline"
+							data-cookiepolicy="single_host_origin"
+							data-callback="signInCallback"
+							data-approvalprompt="force">
+						  </span>
+						</div>
+  </div>
+  
+			
+{% endblock %}
