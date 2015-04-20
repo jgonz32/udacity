@@ -3,13 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
  
 from catalog_database_setup import Manufacturer, Base, Model,Specifications,User
-'''
-HTC
-Nokia
-LG
-Sony
-Motorola
-'''
+
 engine = create_engine('sqlite:///phonecatalogwithuser.db')
 # Bind the engine to the metadata of the Base class so that the
 # declaratives can be accessed through a DBSession instance
@@ -19,6 +13,7 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 user1= User(name="Jorge G.", email="jorgeagd81@gmail.com", picture="picture")
+user2= User(name="Alejandro G.", email="alemgm2013@gmail.com", picture="picture")
 
 manufacturer1 = Manufacturer(name = "HTC", user=user1)
 session.add(manufacturer1)
@@ -43,12 +38,12 @@ session.add(manufacturer1)
 session.commit()
 
 #model iPhone 5s
-model1 = Model(name = "iPhone 5s",manufacturer = manufacturer1, user=user1)
+model1 = Model(name = "iPhone 5s",manufacturer = manufacturer1, user=user2)
 
 session.add(model1)
 session.commit()
 
-specification1=Specifications(size="4.87 x 2.31 x 0.30 inches", weight="3.95 ounces", camera="8 Megapixel iSight camera with True Tone flash", memory="1 GB RAM DDR3", os="iOS 7", display="4.0 inches",model=model1, user=user1)
+specification1=Specifications(size="4.87 x 2.31 x 0.30 inches", weight="3.95 ounces", camera="8 Megapixel iSight camera with True Tone flash", memory="1 GB RAM DDR3", os="iOS 7", display="4.0 inches",model=model1, user=user2)
 
 session.add(specification1)
 session.commit()

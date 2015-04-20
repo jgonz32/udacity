@@ -14,7 +14,7 @@
         {% endif %}
     {% endwith %}
 
-    <h3><span>{{model}}</span></h3>
+    <h3><span>{{model.name}}</span></h3>
     
 	<dl class="dl-horizontal">
 
@@ -34,10 +34,10 @@
 </dl>
 
 	{% if authorized %}
-		<a class="btn btn-primary btn-xs" role="button" href={{url_for('editManufacturerPhone', manufacturer=manufacturer, model=model)}}>Edit</a>
+		<a class="btn btn-primary btn-xs" role="button" href={{url_for('editManufacturerPhone', manufacturer_id=manufacturer.id, model_id=model.id)}}>Edit</a>
 		<a class="btn btn-primary btn-xs" role="button" data-toggle="modal" data-target="#deleteModal">Delete</a>
 	{% else %}
-		<a class="btn btn-primary btn-xs" role="button" href={{url_for('editManufacturerPhone', manufacturer=manufacturer, model=model)}} disabled>Edit</a>
+		<a class="btn btn-primary btn-xs" role="button" href={{url_for('editManufacturerPhone', manufacturer_id=manufacturer.id, model_id=model.id)}} disabled>Edit</a>
 		<a class="btn btn-primary btn-xs" role="button" data-toggle="modal" data-target="#deleteModal" disabled>Delete</a>
 	{% endif %}
 	
@@ -47,19 +47,20 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Delete</h4>
+        <h4 class="modal-title">Alert</h4>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to delete {{model}}?</p>
+        <p>Are you sure you want to delete {{model.name}}?</p>
       </div>
       <div class="modal-footer">
-	  <form action="/catalog/{{manufacturer}}/{{model}}/delete" method = 'post'>
+	  <form action="/catalog/{{manufacturer.id}}/{{model.id}}/delete" method = 'post'>
       
-        <a href={{url_for('deleteManufacturerPhone', manufacturer=manufacturer, model=model)}}>
+        <a href={{url_for('deleteManufacturerPhone', manufacturer_id=manufacturer.id, model_id=model.id)}}>
 			
 		<button class="btn btn-primary delete">
 		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Yes, delete it! </button>
 	    </a>
+	    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
 		</form>
       </div>
     </div><!-- /.modal-content -->

@@ -17,9 +17,9 @@
 			</a></h3>
 			
 			<ul  class="list-group">
-				{% for m, c, mds in manufacturers %}
+				{% for m_id,m, c, mds in manufacturers %}
 				<li class='phone_list'><a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" 
-				data-content="{% for md in mds %}<a class='phone_list' href={{url_for('showPhoneSpecs',manufacturer=m,model=md.name)}}>{{md.name}}</a><br>{% endfor %}">{{m}}   
+				data-content="{% for md in mds %}<a class='phone_list' href={{url_for('showPhoneSpecs',manufacturer_id=m_id,model_id=md.id)}}>{{md.name}}</a><br>{% endfor %}">{{m}}   
 				<span class="badge">{{c}} item(s)</a>
 			
 				{% endfor %}
@@ -29,9 +29,9 @@
 			
 			<h4><span class="label">Recently Added</span></h4>
 			<ul class="list-group">
-				{% for mod, man in recent_models %}
+				{% for mod_id,mod, man_id, man in recent_models %}
 
-				<li><a href={{url_for('showPhoneSpecs',manufacturer=man,model=mod)}}>{{mod}} ({{man}})</a></li>
+				<li><a href={{url_for('showPhoneSpecs',manufacturer_id=man_id,model_id=mod_id)}}>{{mod}} ({{man}})</a></li>
 
 				{% endfor %}
 		

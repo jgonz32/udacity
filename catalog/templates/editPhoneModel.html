@@ -2,7 +2,7 @@
 {% block content %}
 <div class="col-sm-2">
 <div class="container">
-	<h4>Edit {{model.name}} Specifications</h4>
+	<h4>Edit {{manufacturer.name}} {{model.name}} Specifications</h4>
 		{% with messages = get_flashed_messages() %}
 			{% if messages %}
 				<ul>
@@ -14,37 +14,17 @@
 		{% endwith %}
 
 <form action="" method = "post"  class="form-horizontal">
-  <div class="form-group">
-   <div class="col-sm-3">
-	<label>Manufacturer:</label>
-	</div>
-	<div class="col-sm-3">
-	<select name="manufacturer_list" class="form-control" readonly>
-	   <option value="">Select </option>
-	  {% for m,c,md in manufacturers %}
-	    
-		{% if m==manufacturer %}
-		<option value="{{m}}" selected>{{m}}</option>
-		
-		{% endif%}
-		<option value="{{m}}">{{m}}</option>
-	
-	{% endfor %}
-	</select>
-	
-	</div>
-   </div>
+
    <div class="form-group">
     <div class="col-sm-3">
-    <label for="phone_name" >Phone model name:</label>
+    <label for="phone_name" >Phone Model name:</label>
 	</div>
 	<div class="col-sm-3">
-    <input type="text" class="form-control" value="{{model}}" name="name" readonly>
+    <input type="text" class="form-control" value="{{model.name}}" name="phoneModel">
 	</div>
 	
 	</div>
 	
-	<h4>Specifications:</h4>
 	 <div class="form-group">
 		<div class="col-sm-3">
 			<label>Size:</label>
@@ -103,12 +83,12 @@
      <div class="form-group">
 	 <div class="col-sm-3">
      <button type="submit"class="btn btn-primary btn-xs">Save changes</button>
-     <a href ={{url_for('showPhoneSpecs',manufacturer=manufacturer,model=model)}} class="btn btn-primary btn-xs" role="button">
+     <a href ={{url_for('showPhoneSpecs',manufacturer_id=manufacturer.id,model_id=model.id)}} class="btn btn-primary btn-xs" role="button">
 					Cancel
 					</a>
 	</div>
 	</div>
-
+	<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
 </form>
 
 </div>
