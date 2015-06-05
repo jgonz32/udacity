@@ -126,8 +126,8 @@ class Session(ndb.Model):
     duration        = ndb.StringProperty()
     typeOfSession   = ndb.StringProperty()
     speaker        = ndb.StringProperty()
-    date            = ndb.DateProperty()
-    startTime       = ndb.TimeProperty()
+    date            = ndb.DateProperty(required=True)
+    startTime       = ndb.TimeProperty(required=True)
 
  
 class SessionForm(messages.Message):
@@ -137,8 +137,8 @@ class SessionForm(messages.Message):
     duration        = messages.StringField(4)
     typeOfSession   = messages.EnumField('SessionType',5)
     speaker         = messages.StringField(6)
-    date            = messages.StringField(7)
-    startTime       = messages.StringField(8)
+    date            = messages.StringField(7, required=True)
+    startTime       = messages.StringField(8, required=True)
     webSessionKey   = messages.StringField(9)
 
 class SessionForms(messages.Message):
