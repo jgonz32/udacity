@@ -40,7 +40,7 @@ Session
 -------
 The Session model is configured as descendant of Conference. Session are part of a Conference and they 
 can't belong to a different conference. The Session model contain a speakers property that holds the 
-speakers for a session. A session can have 1 or more speakers. The session also has typeOfSession which is of type enum. 
+speakers for a session. The session also has typeOfSession which is of type enum. 
 I created a model called SessionType that holds the types of sessions available. This will allow to have a consistent list
 of allowed session types. Instead of having the user type the session type.
 
