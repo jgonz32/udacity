@@ -867,12 +867,17 @@ class ConferenceApi(remote.Service):
 
         # check if session fields has a speaker
         if session_fields['speaker']:
+            speaker_key = ndb.Key(urlsafe=session_fields['speaker']).get()
+            if not speaker_key:
+                raise endpoints.ConflictException(
+                                "Speaker with key %s doesn't exists"
+                                % session_fields['speaker'])
+
             sessions = Session.query(ancestor=conference)
             sessions_count = sessions.filter(
-                Session.speaker == session_fields['speaker']).count()
+                                      Session.speaker ==
+                                      session_fields['speaker']).count()
 
-            # check if speaker already has more than presentation to add as
-            # feature speaker
             if sessions_count > 0:
                 # push task to add feature speaker to mem cache
                 taskqueue.add(
@@ -974,14 +979,14 @@ class ConferenceApi(remote.Service):
         """Create Feature Speaker & assign to memcache.
         """
 
+        feature_spkr = ""
         conference = ndb.Key(urlsafe=conferencekey)
         # query for sessions presented by specified speaker
         sessions = Session.query(ancestor=conference)
         sessions_list = sessions.filter(
             Session.speaker == speaker).fetch(projection=[Session.name])
 
-        # Make sure speaker and session list is not empty, otherwise
-        # raise exception
+        # Make sure speaker and session list is not empty
         if speaker and sessions_list:
             speaker = ndb.Key(urlsafe=speaker).get()
 
@@ -992,9 +997,6 @@ class ConferenceApi(remote.Service):
 
             # Create memcache for feature speaker
             memcache.set(MEMCACHE_FEATURED_SPEAKER_KEY, feature_spkr)
-        else:
-            raise endpoints.ConflictException(
-                'No speaker or sessions list provided')
 
         return feature_spkr
 
@@ -1016,19 +1018,18 @@ class ConferenceApi(remote.Service):
         name='getSessionBySpeaker')
     def getSessionsBySpeaker(self, request):
         ''' Get all sessions for speaker across conferences '''
-        speaker = ndb.Key(urlsafe=request.webSpeakerKey)
 
+        # try to get generate Speaker Key and get Speaker object from datastore
+        speaker = ndb.Key(urlsafe=request.webSpeakerKey).get()
+
+        # if speaker doesn't exists throw exception
         if not speaker:
             raise endpoints.NotFoundException(
                 'No speaker found with key: %s ' % request.webSpeakerKey)
 
-        # Create a list of sesion Key objects from the list web sesison keys
-        # available in sessionsToPresentKey
-        session_keys = [ndb.Key(urlsafe=session_websafe_keys)
-                        for session_websafe_keys
-                        in speaker.sessionsToPresentKey]
-
-        sessions = ndb.get_multi(session_keys)
+        # Query sessions
+        sessions = Session.query().filter(
+                                   Session.speaker == request.webSpeakerKey)
 
         return SessionForms(
             sessions=[
@@ -1057,7 +1058,7 @@ class ConferenceApi(remote.Service):
 
         # If the speaker in session is not empty, then add to list of speakers
         speakers = [
-            session.speaker for session in sessions \
+            session.speaker for session in sessions
             if session.speaker is not None and session.speaker != ""]
 
         return SpeakerForms(
