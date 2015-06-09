@@ -20,7 +20,7 @@ app = Flask(__name__)
 #passing app to SeaSurf to protect post requests against CSRF attacks
 csrf = SeaSurf(app)
 
-queries = catalog_queries.CatalogQueries('postgresql+psycopg2://catalog:catalog1@/phonecatalog')
+queries = catalog_queries.CatalogQueries('postgresql+psycopg2://catalog:b#stCatal0g@/phonecatalog')
 
 CLIENT_ID = json.loads(
   open('client_secrets.json', 'r').read())['web']['client_id']
