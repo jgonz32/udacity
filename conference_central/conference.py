@@ -867,7 +867,8 @@ class ConferenceApi(remote.Service):
 
         # check if session fields has a speaker
         if session_fields['speaker']:
-            speaker_key = ndb.Key(urlsafe=session_fields['speaker']).get()
+  
+            speaker_key = ndb.Key(urlsafe=session_fields['speaker'])
             if not speaker_key:
                 raise endpoints.ConflictException(
                                 "Speaker with key %s doesn't exists"
