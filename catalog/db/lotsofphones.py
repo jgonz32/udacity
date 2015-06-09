@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
  
 from catalog_database_setup import Manufacturer, Base, Model,Specifications,CatalogUser
 
-engine = create_engine('postgresql+psycopg2://catalog:catalog1@/phonecatalog')
+engine = create_engine('postgresql+psycopg2://catalog:b#stCatal0g@/phonecatalog')
 # Bind the engine to the metadata of the Base class so that the
 # declaratives can be accessed through a DBSession instance
 Base.metadata.bind = engine

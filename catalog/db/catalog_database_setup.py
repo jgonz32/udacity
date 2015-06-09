@@ -80,6 +80,6 @@ class Specifications(Base):
 		}
 
 
-engine = create_engine('postgresql://catalog:catalog1@/phonecatalog')
+engine = create_engine('postgresql://catalog:b#stCatal0g@/phonecatalog')
 
 Base.metadata.create_all(engine)
