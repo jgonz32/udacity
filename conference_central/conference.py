@@ -1133,7 +1133,7 @@ class ConferenceApi(remote.Service):
 
         return request
 
-    # endpoint to create a Speaker
+    # endpoint to create a Speaker in datastore
     @endpoints.method(
         SpeakerForm,
         SpeakerForm,
