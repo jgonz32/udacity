@@ -5,7 +5,7 @@ Created on Apr 17, 2015
 '''
 from sqlalchemy import create_engine, desc
 from sqlalchemy.orm import sessionmaker
-from db.catalog_database_setup import Base, Manufacturer, Model, Specifications, User
+from db.catalog_database_setup import Base, Manufacturer, Model, Specifications, CatalogUser
 
 # This class 
 class CatalogQueries():
@@ -58,21 +58,21 @@ class CatalogQueries():
     
     # Add a user to the database if he/she doesn't exists
     def create_user(self, login_session):
-        newUser = User(name=login_session['username'], email=login_session['email'], picture=login_session['picture'])
+        newUser = CatalogUser(name=login_session['username'], email=login_session['email'], picture=login_session['picture'])
         self.session.add(newUser)
         self.session.commit()
-        user = self.session.query(User).filter_by(email=login_session['email']).one()
+        user = self.session.query(CatalogUser).filter_by(email=login_session['email']).one()
         return user.id
 
     # return user info based on id
     def get_user_info(self, user_id):
-        user = self.session.query(User).filter_by(id=user_id).one()
+        user = self.session.query(CatalogUser).filter_by(id=user_id).one()
         return user
 
     # returned user id based on email address provided. Returns None if email doesn't exists
     def get_user_id(self, email):
         try:
-            user = self.session.query(User).filter_by(email=email).one()
+            user = self.session.query(CatalogUser).filter_by(email=email).one()
             return user.id
         except:
             return None

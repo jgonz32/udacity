@@ -6,8 +6,8 @@ from sqlalchemy import create_engine
 
 Base = declarative_base()
 
-class User(Base):
-	__tablename__='user'
+class CatalogUser(Base):
+	__tablename__='cataloguser'
 	
 	id = Column(Integer, primary_key=True)
 	name = Column(String(250), nullable=False)
@@ -18,8 +18,8 @@ class Manufacturer(Base):
 	__tablename__='manufacturer'
 	id = Column(Integer, primary_key=True)
 	name = Column(String(80), nullable=False)
-	user_id=Column(Integer, ForeignKey('user.id'))
-	user = relationship(User)
+	user_id=Column(Integer, ForeignKey('cataloguser.id'))
+	user = relationship(CatalogUser)
 
 	@property
 	def serialize(self):
@@ -38,8 +38,8 @@ class Model(Base):
 	#date_added=Column(Date, nullable=False)
 	manufacturer_id= Column(Integer, ForeignKey('manufacturer.id'))
 	manufacturer = relationship(Manufacturer)
-	user_id=Column(Integer, ForeignKey('user.id'))
-	user = relationship(User)
+	user_id=Column(Integer, ForeignKey('cataloguser.id'))
+	user = relationship(CatalogUser)
 	
 	@property
 	def serialize(self):
@@ -53,16 +53,16 @@ class Model(Base):
 class Specifications(Base):
 	__tablename__='specifications'
 	id = Column(Integer, primary_key=True)
-	size= Column(String(30))
-	weight= Column(String(20))
-	camera = Column(String(30))
-	memory = Column(String(20))
-	os= Column(String(20))
-	display=Column(String(30))
+	size= Column(String(100))
+	weight= Column(String(100))
+	camera = Column(String(100))
+	memory = Column(String(100))
+	os= Column(String(100))
+	display=Column(String(100))
 	model_id=Column(Integer, ForeignKey('model.id'))
 	model = relationship(Model)
-	user_id=Column(Integer, ForeignKey('user.id'))
-	user = relationship(User)
+	user_id=Column(Integer, ForeignKey('cataloguser.id'))
+	user = relationship(CatalogUser)
 	
 
 	@property
@@ -80,6 +80,6 @@ class Specifications(Base):
 		}
 
 
-engine = create_engine('sqlite:///phonecatalogwithuser.db')
+engine = create_engine('postgresql://catalog:catalog1@/phonecatalog')
 
 Base.metadata.create_all(engine)

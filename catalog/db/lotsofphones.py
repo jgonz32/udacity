@@ -2,9 +2,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
  
-from catalog_database_setup import Manufacturer, Base, Model,Specifications,User
+from catalog_database_setup import Manufacturer, Base, Model,Specifications,CatalogUser
 
-engine = create_engine('sqlite:///phonecatalogwithuser.db')
+engine = create_engine('postgresql+psycopg2://catalog:catalog1@/phonecatalog')
 # Bind the engine to the metadata of the Base class so that the
 # declaratives can be accessed through a DBSession instance
 Base.metadata.bind = engine
@@ -12,8 +12,8 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-user1= User(name="Jorge G.", email="jorgeagd81@gmail.com", picture="picture")
-user2= User(name="Alejandro G.", email="alemgm2013@gmail.com", picture="picture")
+user1= CatalogUser(name="Jorge G.", email="jorgeagd81@gmail.com", picture="picture")
+user2= CatalogUser(name="Alejandro G.", email="alemgm2013@gmail.com", picture="picture")
 
 manufacturer1 = Manufacturer(name = "HTC", user=user1)
 session.add(manufacturer1)
