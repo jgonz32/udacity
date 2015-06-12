@@ -13,7 +13,20 @@ Configuration Steps:
 	
 	# Added the following line in the sudoers file
 	grader ALL=(ALL:ALL) ALL
-	
+
+---	UPDATE ----
+
+To allow the grader useer to connect using same key, I had to copy the authorized_keys
+file to the /home/grader/.ssh folder. Then enabled the following in the sshd_config file:
+AuthorizedKeysFile      %h/.ssh/authorized_keys
+
+Also, had to switch ownership to the authorized_keys file for the grader user.
+
+To block access of root I changed the PermitRootlogin to no and removed the 
+authorized_keys file
+
+
+---------------------
 2. Updated all currently installed packages:
 	>apt-get update #to update the source list
 	>apt-get upgrade #this updates all install packages
